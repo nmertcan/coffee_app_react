@@ -1,23 +1,44 @@
-# Kahve Durağı
+# Kahve Durağı | React Coffee Ordering App
 
-Vite + React ile hazırlanmış kahve sipariş uygulaması.
+[English](#english) · [Canlı demo](https://coffee-app-react.vercel.app/)
 
-## Kurulum
+## Türkçe
 
+**Kahve Durağı**, kahve ürünlerini keşfetme ve sipariş süreçlerini yönetme senaryosunu gösteren React uygulamasıdır. **API entegrasyonu, bileşenler arası veri akışı, sepet durumu ve çok adımlı kullanıcı deneyimi** odaklı bir portfolyo projesidir.
+
+### Özellikler
+- Kahve listeleme (`GET /api/coffee`), arama ve kategori filtreleme
+- Ürün detay ekranı
+- Sepete ekleme, adet güncelleme ve sepetten çıkarma
+- Sipariş oluşturma (`POST /orders`), siparişleri listeleme ve hazır durumuna geçirme (`PUT /orders/{id}/ready`)
+- `useState` ve props üzerinden durum/veri paylaşımı
+- API kullanılamadığında örnek kahve verileriyle demo deneyimi
+
+**Teknolojiler:** React 19 · JavaScript · Vite · Axios · React Router · Lucide React · CSS · ESLint
+
+### Kurulum
 ```bash
 npm install
 npm run dev
 ```
 
-## Özellikler
+### Kontroller
+```bash
+npm run lint
+npm test
+npm run build
+```
 
-- Kahve listeleme: `GET /api/coffee`
-- Arama ve kategori filtreleme
-- Kahve detay sayfası
-- Sepete ekleme, adet güncelleme ve silme
-- Sipariş oluşturma: `POST /orders`
-- Siparişleri listeleme
-- Siparişi hazır yapma: `PUT /orders/{id}/ready`
-- `useState` ve prop drilling ile durum yönetimi
+**Canlı demo:** https://coffee-app-react.vercel.app/
 
-API çalışmıyorsa uygulama demo kahve verileriyle açılır.
+> API bağlantısı ve sipariş işlemleri kullanılan servis ortamına bağlıdır. Demo verilerinin görünmesi, gerçek siparişin sunucuya kaydedildiği anlamına gelmez.
+
+## English
+
+A React coffee-ordering interface demonstrating **API integration, product discovery, cart state, and order-management flows**. Features product filtering, detail views, cart quantity controls, order creation/listing, ready-state updates, and demo-data fallback when the API is unavailable.
+
+**Stack:** React 19, JavaScript, Vite, Axios, React Router, Lucide React, CSS, ESLint.
+
+**Run:** `npm install && npm run dev` · **Checks:** `npm run lint && npm test && npm run build`
+
+**Live demo:** https://coffee-app-react.vercel.app/
