@@ -1,5 +1,5 @@
 import axios from "axios";
-import { mockCoffee } from "../data/mockCoffee";
+import { mockCoffee } from "../data/mockCoffee.js";
 
 const api = axios.create({
   baseURL: "",
@@ -18,14 +18,14 @@ export async function getCoffeeList() {
   }
 }
 
-export async function createOrder(order) {
-  const response = await api.post("/orders", order);
+export async function createOrder(order, client = api) {
+  const response = await client.post("/orders", order);
   return response.data;
 }
 
-export async function getOrders() {
+export async function getOrders(client = api) {
   try {
-    const response = await api.get("/orders");
+    const response = await client.get("/orders");
     return Array.isArray(response.data) ? response.data : response.data.orders;
   } catch (error) {
     console.warn("Siparişler alınamadı.", error);
@@ -33,7 +33,7 @@ export async function getOrders() {
   }
 }
 
-export async function markOrderReady(orderId) {
-  const response = await api.put(`/orders/${orderId}/ready`);
+export async function markOrderReady(orderId, client = api) {
+  const response = await client.put(`/orders/${orderId}/ready`);
   return response.data;
 }

@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createOrder } from "../api/coffeeApi";
 import EmptyState from "../components/EmptyState";
+import { cartTotal } from "../utils/cart";
 
 function Cart({
   cartItems,
@@ -19,10 +20,7 @@ function Cart({
 
   const totalPrice = useMemo(
     () =>
-      cartItems.reduce(
-        (total, item) => total + Number(item.price) * item.quantity,
-        0
-      ),
+      cartTotal(cartItems),
     [cartItems]
   );
 
