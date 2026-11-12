@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
+import { addCartItem, setCartItemQuantity, removeCartItem, cartItemCount } from "./utils/cart";
 import Navbar from "./components/Navbar";
 import Cart from "./pages/Cart";
 import CoffeeDetail from "./pages/CoffeeDetail";
@@ -12,43 +13,20 @@ function App() {
   const [orders, setOrders] = useState([]);
 
   const cartCount = useMemo(
-    () => cartItems.reduce((total, item) => total + item.quantity, 0),
+    () => cartItemCount(cartItems),
     [cartItems]
   );
 
   const addToCart = (coffee) => {
-    setCartItems((currentItems) => {
-      const existingItem = currentItems.find((item) => item.id === coffee.id);
-
-      if (existingItem) {
-        return currentItems.map((item) =>
-          item.id === coffee.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-
-      return [...currentItems, { ...coffee, quantity: 1 }];
-    });
+    setCartItems((items) => addCartItem(items, coffee));
   };
 
   const updateQuantity = (coffeeId, quantity) => {
-    if (quantity <= 0) {
-      removeFromCart(coffeeId);
-      return;
-    }
-
-    setCartItems((currentItems) =>
-      currentItems.map((item) =>
-        item.id === coffeeId ? { ...item, quantity } : item
-      )
-    );
+    setCartItems((items) => setCartItemQuantity(items, coffeeId, quantity));
   };
 
   const removeFromCart = (coffeeId) => {
-    setCartItems((currentItems) =>
-      currentItems.filter((item) => item.id !== coffeeId)
-    );
+    setCartItems((items) => removeCartItem(items, coffeeId));
   };
 
   const clearCart = () => {
