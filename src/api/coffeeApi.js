@@ -1,5 +1,5 @@
 import axios from "axios";
-import { mockCoffee } from "../data/mockCoffee";
+import { mockCoffee } from "../data/mockCoffee.js";
 
 const api = axios.create({
   baseURL: "",
